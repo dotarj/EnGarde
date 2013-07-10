@@ -4,7 +4,7 @@ using System;
 namespace EnGarde.Test
 {
     [TestClass]
-    public class StringExtensionsTests
+    public class ArgumentStringExtensionsTests
     {
         [TestClass]
         public class TheIsNullMethod

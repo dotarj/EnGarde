@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace EnGarde.Test
 {
     [TestClass]
-    public class EnumExtensionsTests
+    public class ArgumentEnumExtensionsTests
     {
         [TestClass]
         public class TheIsDefinedMethod

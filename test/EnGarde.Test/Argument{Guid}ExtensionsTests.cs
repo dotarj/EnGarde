@@ -4,7 +4,7 @@ using System;
 namespace EnGarde.Test
 {
     [TestClass]
-    public class GuidExtensionsTests
+    public class ArgumentGuidExtensionsTests
     {
         [TestClass]
         public class TheIsEmptyMethod

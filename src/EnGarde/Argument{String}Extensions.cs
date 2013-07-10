@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EnGarde
 {
-    public static class StringExtensions
+    public static class ArgumentStringExtensions
     {
         /// <summary>
         /// Checks whether the argument value is not null.

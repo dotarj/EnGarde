@@ -35,12 +35,14 @@
     </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EnumExtensions.cs" />
+    <Compile Include="Argument{Enum}Extensions.cs" />
     <Compile Include="Argument.cs" />
-    <Compile Include="ArgumentExtensions.cs" />
+    <Compile Include="Argument{T}Extensions.cs" />
     <Compile Include="Argument{T}.cs" />
-    <Compile Include="GuidExtensions.cs" />
-    <Compile Include="IComparableExtensions.cs" />
+    <Compile Include="Argument{Guid}Extensions.cs" />
+    <Compile Include="Argument{IComparable}Extensions.cs" />
+    <Compile Include="Argument{Nullable{T}}Extensions.cs" />
+    <Compile Include="Argument{Class}Extensions.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -48,7 +50,7 @@
     </Compile>
     <Compile Include="ParameterNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Argument{String}Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Messages.resx">

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace EnGarde.Test
 {
     [TestClass]
-    public class IComparableExtensionsTests
+    public class ArgumentIComparableExtensionsTests
     {
         [TestClass]
         public class TheIsGreaterThanMethod
