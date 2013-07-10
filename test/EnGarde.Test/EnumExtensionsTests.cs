@@ -17,7 +17,17 @@ namespace EnGarde.Test
                 var value = (StringSplitOptions)int.MaxValue;
 
                 // Act
-                Argument.Assert(value, "").IsDefinedEnumValue();
+                Argument.Assert(value, "").Not().IsDefinedEnumValue();
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowInvalidEnumArgumentExceptionIfValueIsValid()
+            {
+                // Arrange
+                var value = StringSplitOptions.RemoveEmptyEntries;
+
+                // Act
+                Argument.Assert(value, "").Not().IsDefinedEnumValue();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -27,11 +37,21 @@ namespace EnGarde.Test
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsDefinedEnumValue();
+                Argument.Assert(value, "").Not().IsDefinedEnumValue();
             }
 
             [TestMethod]
-            public void ShouldNotThrowInvalidEnumArgumentExceptionIfValueIsValid()
+            public void ShouldNotThrowInvalidEnumArgumentExceptionIfValueIsNotValid()
+            {
+                // Arrange
+                var value = (StringSplitOptions)int.MaxValue;
+
+                // Act
+                Argument.Assert(value, "").IsDefinedEnumValue();
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfValueIsValid()
             {
                 // Arrange
                 var value = StringSplitOptions.RemoveEmptyEntries;

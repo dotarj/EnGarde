@@ -15,5 +15,7 @@
         internal T Value { get; private set; }
 
         internal string ParameterName { get; private set; }
+
+        internal bool IsNegativeAssertion { get; set; }
     }
 }

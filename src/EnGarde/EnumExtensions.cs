@@ -17,21 +17,51 @@ namespace EnGarde
         /// <exception cref="InvalidOperationException"><typeparamref name="T"/> is not an enum type.</exception>
         /// <exception cref="InvalidEnumArgumentException"><paramref name="argument"/> value is not a defined enum value.</exception>
         [DebuggerStepThrough]
-        public static Argument<T> IsDefinedEnumValue<T>(this Argument<T> argument) where T : struct, IConvertible
+        public static Argument<T> IsDefinedEnumValue<T>(this Argument<T> argument, string message = null) where T : struct, IConvertible
         {
-            Argument.Assert(argument, ParameterNames.Argument).IsNotNull();
+            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
 
             if (!typeof(T).IsEnum)
             {
                 throw new InvalidOperationException(string.Format(Messages.GenericTypeParameterMustBeEnum, typeof(T).Name));
             }
 
-            if (!Enum.IsDefined(typeof(T), argument.Value))
+            Exception exception;
+
+            if (!ValidateIsDefinedEnumValue(argument, message, out exception))
             {
-                throw new InvalidEnumArgumentException(argument.ParameterName, Convert.ToInt32(argument.Value), typeof(T));
+                throw exception;
             }
 
+            argument.IsNegativeAssertion = false;
+
             return argument;
+        }
+
+        private static bool ValidateIsDefinedEnumValue<T>(Argument<T> argument, string message, out Exception exception)
+        {
+            if (!Enum.IsDefined(typeof(T), argument.Value))
+            {
+                if (argument.IsNegativeAssertion)
+                {
+                    exception = new InvalidEnumArgumentException(argument.ParameterName, Convert.ToInt32(argument.Value), typeof(T));
+
+                    return false;
+                }
+            }
+            else
+            {
+                if (!argument.IsNegativeAssertion)
+                {
+                    exception = new ArgumentException(message, argument.ParameterName);
+
+                    return false;
+                }
+            }
+
+            exception = null;
+
+            return true;
         }
     }
 }

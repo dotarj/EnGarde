@@ -14,16 +14,46 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is an empty guid.</exception>
         [DebuggerStepThrough]
-        public static Argument<Guid> IsNotEmpty(this Argument<Guid> argument, string message = null)
+        public static Argument<Guid> IsEmpty(this Argument<Guid> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).IsNotNull();
+            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
 
-            if (argument.Value.Equals(Guid.Empty))
+            Exception exception;
+
+            if (!ValidateIsEmpty(argument, message, out exception))
             {
-                throw new ArgumentException(message, argument.ParameterName);
+                throw exception;
             }
 
+            argument.IsNegativeAssertion = false;
+
             return argument;
+        }
+
+        private static bool ValidateIsEmpty(Argument<Guid> argument, string message, out Exception exception)
+        {
+            if (argument.Value.Equals(Guid.Empty))
+            {
+                if (argument.IsNegativeAssertion)
+                {
+                    exception = new ArgumentException(message, argument.ParameterName);
+
+                    return false;
+                }
+            }
+            else
+            {
+                if (!argument.IsNegativeAssertion)
+                {
+                    exception = new ArgumentException(message, argument.ParameterName);
+
+                    return false;
+                }
+            }
+
+            exception = null;
+
+            return true;
         }
     }
 }

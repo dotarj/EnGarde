@@ -10,16 +10,6 @@ namespace EnGarde.Test
         [TestClass]
         public class TheIsGreaterThanMethod
         {
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
-            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsEqual()
-            {
-                // Arrange
-                var value = 1;
-
-                // Act
-                Argument.Assert(value, "").IsGreaterThan(1);
-            }
-
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
             public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
             {
@@ -28,6 +18,16 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").IsGreaterThan("");
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsEqual()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThan(1);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -79,21 +79,71 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsGreaterThan(0, Comparer<int>.Default);
             }
-        }
 
-        [TestClass]
-        public class TheIsGreaterThanOrEqualToMethod
-        {
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
-            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsLess()
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsEqual()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsGreaterThanOrEqualTo(2);
+                Argument.Assert(value, "").Not().IsGreaterThan(1);
             }
 
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLess()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThan(2);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsGreater()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThan(0);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsEqualUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThan(1, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLessUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThan(2, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsGreaterUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThan(0, Comparer<int>.Default);
+            }
+        }
+
+        [TestClass]
+        public class TheIsGreaterThanOrEqualToMethod
+        {
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
             public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
             {
@@ -102,6 +152,16 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").IsGreaterThanOrEqualTo("");
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsLess()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThanOrEqualTo(2);
             }
 
             [TestMethod]
@@ -153,21 +213,71 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsGreaterThanOrEqualTo(1, Comparer<int>.Default);
             }
-        }
 
-        [TestClass]
-        public class TheIsLessThanMethod
-        {
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
-            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsEqual()
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLess()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsLessThan(1);
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(2);
             }
 
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsGreater()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(0);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsEqual()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLessUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(2, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsGreaterUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(0, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShoulThrowAnExceptionIfValueIsEqualUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(1, Comparer<int>.Default);
+            }
+        }
+
+        [TestClass]
+        public class TheIsLessThanMethod
+        {
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
             public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
             {
@@ -176,6 +286,16 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").IsLessThan("");
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsEqual()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThan(1);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -227,21 +347,71 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsLessThan(2, Comparer<int>.Default);
             }
-        }
 
-        [TestClass]
-        public class TheIsLessThanOrEqualToMethod
-        {
-            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
-            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsGreater()
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsEqual()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsLessThanOrEqualTo(0);
+                Argument.Assert(value, "").Not().IsLessThan(1);
             }
 
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreater()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThan(0);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsLess()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThan(2);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsEqualUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThan(1, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreaterUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThan(0, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsLessUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThan(2, Comparer<int>.Default);
+            }
+        }
+
+        [TestClass]
+        public class TheIsLessThanOrEqualToMethod
+        {
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
             public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
             {
@@ -250,6 +420,16 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").IsLessThanOrEqualTo("");
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfValueIsGreater()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThanOrEqualTo(0);
             }
 
             [TestMethod]
@@ -301,24 +481,71 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsLessThanOrEqualTo(1, Comparer<int>.Default);
             }
-        }
 
-
-
-
-        [TestClass]
-        public class TheIsEqualToMethod
-        {
-            [TestMethod, ExpectedException(typeof(ArgumentException))]
-            public void ShouldThrowArgumentExceptionIfValueIsGreater()
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreater()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsEqualTo(0);
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(0);
             }
 
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsLess()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(2);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsEqual()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreaterUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(0, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsLessUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(2, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowAnExceptionIfValueIsEqualUsingComparer()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsLessThanOrEqualTo(1, Comparer<int>.Default);
+            }
+        }
+
+        [TestClass]
+        public class TheIsEqualToMethod
+        {
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
             public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
             {
@@ -327,6 +554,16 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").IsEqualTo("");
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfValueIsGreater()
+            {
+                // Arrange
+                var value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsEqualTo(0);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -378,79 +615,65 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsEqualTo(1, EqualityComparer<int>.Default);
             }
-        }
 
-        [TestClass]
-        public class TheIsNotEqualToMethod
-        {
             [TestMethod]
-            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreater()
+            public void ShouldNotThrowArgumentExceptionIfValueIsGreater()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(0);
-            }
-
-            [TestMethod, ExpectedException(typeof(InvalidOperationException))]
-            public void ShouldThrowInvalidOperationExceptionIfValueIsNull()
-            {
-                // Arrange
-                string value = null;
-
-                // Act
-                Argument.Assert(value, "").IsNotEqualTo("");
+                Argument.Assert(value, "").Not().IsEqualTo(0);
             }
 
             [TestMethod]
-            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLess()
+            public void ShouldNotThrowArgumentExceptionIfValueIsLess()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(2);
+                Argument.Assert(value, "").Not().IsEqualTo(2);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
-            public void ShouldThrowAnArgumentExceptionIfValueIsEqual()
+            public void ShouldThrowAnExceptionIfValueIsEqual()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(1);
+                Argument.Assert(value, "").Not().IsEqualTo(1);
             }
 
             [TestMethod]
-            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsGreaterUsingComparer()
+            public void ShouldNotThrowArgumentExceptionIfValueIsGreaterUsingComparer()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(0, EqualityComparer<int>.Default);
+                Argument.Assert(value, "").Not().IsEqualTo(0, EqualityComparer<int>.Default);
             }
 
             [TestMethod]
-            public void ShouldNotThrowArgumentOutOfRangeExceptionIfValueIsLessUsingComparer()
+            public void ShouldNotThrowArgumentExceptionIfValueIsLessUsingComparer()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(2, EqualityComparer<int>.Default);
+                Argument.Assert(value, "").Not().IsEqualTo(2, EqualityComparer<int>.Default);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
-            public void ShouldThrowAnArgumentExceptionIfValueIsEqualUsingComparer()
+            public void ShouldThrowAnExceptionIfValueIsEqualUsingComparer()
             {
                 // Arrange
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").IsNotEqualTo(1, EqualityComparer<int>.Default);
+                Argument.Assert(value, "").Not().IsEqualTo(1, EqualityComparer<int>.Default);
             }
         }
     }

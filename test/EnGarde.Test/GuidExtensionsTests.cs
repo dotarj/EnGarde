@@ -9,6 +9,26 @@ namespace EnGarde.Test
         [TestClass]
         public class TheIsEmptyMethod
         {
+            [TestMethod]
+            public void ShouldNotThrowArgumentExceptionIfValueIsEmpty()
+            {
+                // Arrange
+                var value = Guid.Empty;
+
+                // Act
+                Argument.Assert(value, "").IsEmpty();
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfValueIsNotEmpty()
+            {
+                // Arrange
+                var value = Guid.NewGuid();
+
+                // Act
+                Argument.Assert(value, "").IsEmpty();
+            }
+
             [TestMethod, ExpectedException(typeof(ArgumentException))]
             public void ShouldThrowArgumentExceptionIfValueIsEmpty()
             {
@@ -16,7 +36,7 @@ namespace EnGarde.Test
                 var value = Guid.Empty;
 
                 // Act
-                Argument.Assert(value, "").IsNotEmpty();
+                Argument.Assert(value, "").Not().IsEmpty();
             }
 
             [TestMethod]
@@ -26,7 +46,7 @@ namespace EnGarde.Test
                 var value = Guid.NewGuid();
 
                 // Act
-                Argument.Assert(value, "").IsNotEmpty();
+                Argument.Assert(value, "").Not().IsEmpty();
             }
         }
     }
