@@ -35,7 +35,7 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is the default value.</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T> IsDefault<T>(this Argument<T> argument, string message = null)
         {
             Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();

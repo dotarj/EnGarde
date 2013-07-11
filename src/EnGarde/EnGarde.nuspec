@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EnGarde</id>
+    <version>$version$</version>
+    <title>EnGarde</title>
+    <authors>Arjen Post</authors>
+    <owners>Arjen Post</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/dotarj/EnGarde</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>Argument Guard Validation Assert Ensure</tags>
+  </metadata>
+</package>
