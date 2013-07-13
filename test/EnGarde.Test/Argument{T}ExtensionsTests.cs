@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace EnGarde.Test
 {
     [TestClass]
-    public class ArgumentTExtensionsTests
+    public class ArgumentExtensionsTests
     {
         [TestClass]
         public class TheIsDefaultMethod

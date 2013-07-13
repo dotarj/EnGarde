@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace EnGarde
 {
-    public static class ArgumentTExtensions
+    public static partial class ArgumentExtensions
     {
         /// <summary>
         /// Negates the next assert.
@@ -44,7 +44,7 @@ namespace EnGarde
 
             if (default(T) == null)
             {
-                if (!ArgumentClassExtensions.ValidateIsNull(argument, message, out exception))
+                if (!ArgumentExtensions.ValidateIsNull(argument, message, out exception))
                 {
                     throw exception;
                 }

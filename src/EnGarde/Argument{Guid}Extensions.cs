@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace EnGarde
 {
-    public static class ArgumentGuidExtensions
+    public static partial class ArgumentExtensions
     {
         /// <summary>
         /// Checks whether the argument value is not an empty guid.

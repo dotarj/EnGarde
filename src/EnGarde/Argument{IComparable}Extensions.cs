@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace EnGarde
 {
-    public static class ArgumentIComparableExtensions
+    public static partial class ArgumentExtensions
     {
         /// <summary>
         /// Checks whether the argument value is greater than the given value.

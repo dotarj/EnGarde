@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace EnGarde
 {
-    public static class ArgumentEnumExtensions
+    public static partial class ArgumentExtensions
     {
         /// <summary>
         /// Checks whether the argument value is a defined enum value.

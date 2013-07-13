@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace EnGarde
 {
-    public static class ArgumentNullableTExtensions
+    public static partial class ArgumentExtensions
     {
         /// <summary>
         /// Checks whether the nullable argument value has a value.
