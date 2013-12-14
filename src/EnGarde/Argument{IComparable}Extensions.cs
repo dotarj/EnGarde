@@ -7,7 +7,7 @@ namespace EnGarde
     public static partial class ArgumentExtensions
     {
         /// <summary>
-        /// Checks whether the argument value is greater than the given value.
+        /// Determines whether the argument value is greater than the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -16,7 +16,8 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not greater than the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsGreaterThan<T>(this Argument<T> argument, T value, string message = null) where T : IComparable<T>
         {
@@ -66,7 +67,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is greater than the given value.
+        /// Determines whether the argument value is greater than the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -77,7 +78,8 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not greater than the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsGreaterThan<T>(this Argument<T> argument, T value, IComparer<T> comparer, string message = null)
         {
@@ -123,7 +125,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is greater than or equal to the given value.
+        /// Determines whether the argument value is greater than or equal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -132,7 +134,8 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not greater than or equal to the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater or equal than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater or equal than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsGreaterThanOrEqualTo<T>(this Argument<T> argument, T value, string message = null) where T : IComparable<T>
         {
@@ -182,7 +185,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is greater than or queal to the given value.
+        /// Determines whether the argument value is greater than or queal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -193,7 +196,8 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not greater than or equal to the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater or equal than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater or equal than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsGreaterThanOrEqualTo<T>(this Argument<T> argument, T value, IComparer<T> comparer, string message = null)
         {
@@ -239,7 +243,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is equal to the given value.
+        /// Determines whether the argument value is equal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -248,7 +252,8 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not equal to given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is equal to given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not equal to given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsEqualTo<T>(this Argument<T> argument, T value, string message = null) where T : IEquatable<T>
         {
@@ -298,7 +303,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is equal to the given value.
+        /// Determines whether the argument value is equal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -309,7 +314,8 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not equal to the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is equal to given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not equal to given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsEqualTo<T>(this Argument<T> argument, T value, IEqualityComparer<T> comparer, string message = null)
         {
@@ -355,7 +361,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is less than or equal to the given value.
+        /// Determines whether the argument value is less than or equal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -364,7 +370,8 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not less than or equal to the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is less or equal than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not less or equal than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsLessThanOrEqualTo<T>(this Argument<T> argument, T value, string message = null) where T : IComparable<T>
         {
@@ -414,7 +421,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is less than or queal to the given value.
+        /// Determines whether the argument value is less than or queal to the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -425,7 +432,8 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not less than or equal to the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is less or equal than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not less or equal than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsLessThanOrEqualTo<T>(this Argument<T> argument, T value, IComparer<T> comparer, string message = null)
         {
@@ -471,7 +479,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is less than the given value.
+        /// Determines whether the argument value is less than the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -480,7 +488,8 @@ namespace EnGarde
         /// <returns>The original wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not less than the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is less than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not less than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsLessThan<T>(this Argument<T> argument, T value, string message = null) where T : IComparable<T>
         {
@@ -530,7 +539,7 @@ namespace EnGarde
         }
 
         /// <summary>
-        /// Checks whether the argument value is less than the given value.
+        /// Determines whether the argument value is less than the given value.
         /// </summary>
         /// <typeparam name="T">The type of the argument to validate.</typeparam>
         /// <param name="argument">A wrapper object containing the actual argument value.</param>
@@ -541,7 +550,8 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="comparer"/> is null.</exception>
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
-        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is not less than the given value.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is less than the given value (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not less than the given value (if not negated).</exception>
         [DebuggerStepThrough]
         public static Argument<T> IsLessThan<T>(this Argument<T> argument, T value, IComparer<T> comparer, string message = null)
         {
