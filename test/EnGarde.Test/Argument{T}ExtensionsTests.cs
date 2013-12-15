@@ -91,38 +91,25 @@ namespace EnGarde.Test
                 Argument.Assert(value, "value").IsDefault();
             }
 
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowExceptionIfNullableValueIsDefault()
+            {
+                // Arrange
+                int? value = 0;
 
+                // Act
+                Argument.Assert(value, "value").Not().IsDefault();
+            }
 
+            [TestMethod]
+            public void ShouldNotThrowExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
 
-            //[TestMethod]
-            //public void ShouldNotThrowExceptionIfStructValueIsDefault()
-            //{
-            //    // Arrange
-            //    int value = 0;
-
-            //    // Act
-            //    Argument.Assert(value, "value").IsDefault();
-            //}
-
-            //[TestMethod, ExpectedException(typeof(ArgumentNullException))]
-            //public void ShouldThrowExceptionIfStructValueIsDefault()
-            //{
-            //    // Arrange
-            //    List<int> value = null;
-
-            //    // Act
-            //    Argument.Assert(value, "value").Not().IsDefault();
-            //}
-
-            //[TestMethod]
-            //public void ShouldNotThrowExceptionIfStructValueIsNotDefault()
-            //{
-            //    // Arrange
-            //    var value = new List<int>();
-
-            //    // Act
-            //    Argument.Assert(value, "value").Not().IsDefault();
-            //}
+                // Act
+                Argument.Assert(value, "value").Not().IsDefault();
+            }
         }
     }
 }

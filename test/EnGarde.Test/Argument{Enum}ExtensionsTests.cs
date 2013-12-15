@@ -60,6 +60,36 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").IsDefined();
             }
+
+            [TestMethod, ExpectedException(typeof(InvalidEnumArgumentException))]
+            public void ShouldThrowInvalidEnumArgumentExceptionIfNullableValueIsNotValid()
+            {
+                // Arrange
+                var value = (StringSplitOptions?)int.MaxValue;
+
+                // Act
+                Argument.Assert(value, "").IsDefined();
+            }
+
+            [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+            public void ShouldThrowInvalidOperationExceptionIfNullableValueIsNotEnum()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().IsDefined();
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                StringSplitOptions? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsDefined();
+            }
         }
 
         [TestClass]
@@ -110,6 +140,36 @@ namespace EnGarde.Test
             {
                 // Arrange
                 var value = MethodAttributes.Abstract;
+
+                // Act
+                Argument.Assert(value, "").HasFlag(MethodAttributes.Abstract);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfNullableValueIsNotValid()
+            {
+                // Arrange
+                MethodAttributes? value = MethodAttributes.Abstract;
+
+                // Act
+                Argument.Assert(value, "").HasFlag(MethodAttributes.Assembly);
+            }
+
+            [TestMethod, ExpectedException(typeof(InvalidOperationException))]
+            public void ShouldThrowInvalidOperationExceptionIfNullableValueIsNotEnum()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").Not().HasFlag(2);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                MethodAttributes? value = null;
 
                 // Act
                 Argument.Assert(value, "").HasFlag(MethodAttributes.Abstract);

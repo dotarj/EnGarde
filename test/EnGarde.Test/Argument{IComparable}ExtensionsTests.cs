@@ -139,6 +139,46 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").Not().IsGreaterThan(0, Comparer<int>.Default);
             }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqual()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThan(1);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqualUsingComparer()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThan(1, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThan(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNullUsingComparer()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThan(1, Comparer<int>.Default);
+            }
         }
 
         [TestClass]
@@ -272,6 +312,46 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").Not().IsGreaterThanOrEqualTo(1, Comparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqual()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThanOrEqualTo(2);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqualUsingComparer()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThanOrEqualTo(2, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThanOrEqualTo(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNullUsingComparer()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsGreaterThanOrEqualTo(1, Comparer<int>.Default);
             }
         }
 
@@ -407,6 +487,46 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").Not().IsLessThan(2, Comparer<int>.Default);
             }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqual()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThan(1);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqualUsingComparer()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThan(1, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsLessThan(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNullUsingComparer()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsLessThan(1, Comparer<int>.Default);
+            }
         }
 
         [TestClass]
@@ -541,6 +661,46 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").Not().IsLessThanOrEqualTo(1, Comparer<int>.Default);
             }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqual()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThanOrEqualTo(0);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+            public void ShouldThrowArgumentOutOfRangeExceptionIfNullableValueIsEqualUsingComparer()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsLessThanOrEqualTo(0, Comparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsLessThanOrEqualTo(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNullUsingComparer()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsLessThanOrEqualTo(1, Comparer<int>.Default);
+            }
         }
 
         [TestClass]
@@ -674,6 +834,46 @@ namespace EnGarde.Test
 
                 // Act
                 Argument.Assert(value, "").Not().IsEqualTo(1, EqualityComparer<int>.Default);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfNullableValueIsGreater()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsEqualTo(0);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfNullableValueIsGreaterUsingComparer()
+            {
+                // Arrange
+                int? value = 1;
+
+                // Act
+                Argument.Assert(value, "").IsEqualTo(0, EqualityComparer<int>.Default);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNull()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsEqualTo(1);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowArgumentOutOfRangeExceptionIfNullableValueIsNullUsingComparer()
+            {
+                // Arrange
+                int? value = null;
+
+                // Act
+                Argument.Assert(value, "").IsEqualTo(1, EqualityComparer<int>.Default);
             }
         }
     }

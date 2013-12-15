@@ -18,7 +18,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> IsNull(this Argument<string> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             Exception exception;
 
@@ -71,7 +74,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> IsEmpty(this Argument<string> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -129,7 +135,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> IsWhitespace(this Argument<string> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -193,7 +202,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> IsNullOrEmpty(this Argument<string> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             Exception exception;
 
@@ -256,7 +268,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> IsNullOrWhitespace(this Argument<string> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             Exception exception;
 
@@ -319,7 +334,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> StartsWith(this Argument<string> argument, string value, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -379,7 +397,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> StartsWith(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -412,7 +433,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> EndsWith(this Argument<string> argument, string value, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -472,7 +496,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> EndsWith(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -505,7 +532,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> Contains(this Argument<string> argument, string value, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {
@@ -565,7 +595,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<string> Contains(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             if (argument.Value == null)
             {

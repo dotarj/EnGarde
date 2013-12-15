@@ -17,11 +17,14 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<Guid> IsEmpty(this Argument<Guid> argument, string message = null)
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             Exception exception;
 
-            if (!ValidateIsEmpty(argument, message, out exception))
+            if (!ValidateIsEmpty(argument.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
             {
                 throw exception;
             }
@@ -31,22 +34,54 @@ namespace EnGarde
             return argument;
         }
 
-        private static bool ValidateIsEmpty(Argument<Guid> argument, string message, out Exception exception)
+        /// <summary>
+        /// Determines whether the argument value is not an empty guid.
+        /// </summary>
+        /// <param name="argument">A wrapper object containing the actual argument value.</param>
+        /// <param name="message">The message that describes the error, if the validation of the argument value failed.</param>
+        /// <returns>The original wrapper object containing the actual argument value.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is an empty guid (if negated).</exception>
+        /// <exception cref="ArgumentException"><paramref name="argument"/> value is not an empty guid (if not negated).</exception>
+        [DebuggerStepThrough]
+        public static Argument<Guid?> IsEmpty(this Argument<Guid?> argument, string message = null)
         {
-            if (argument.Value.Equals(Guid.Empty))
+            if (argument == null)
             {
-                if (argument.IsNegativeAssertion)
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
+
+            if (argument.Value.HasValue)
+            {
+                Exception exception;
+
+                if (!ValidateIsEmpty(argument.Value.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
                 {
-                    exception = new ArgumentException(message, argument.ParameterName);
+                    throw exception;
+                }
+            }
+
+            argument.IsNegativeAssertion = false;
+
+            return argument;
+        }
+
+        private static bool ValidateIsEmpty(Guid value, bool isNegativeAssertion, string parameterName, string message, out Exception exception)
+        {
+            if (value.Equals(Guid.Empty))
+            {
+                if (isNegativeAssertion)
+                {
+                    exception = new ArgumentException(message, parameterName);
 
                     return false;
                 }
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!isNegativeAssertion)
                 {
-                    exception = new ArgumentException(message, argument.ParameterName);
+                    exception = new ArgumentException(message, parameterName);
 
                     return false;
                 }

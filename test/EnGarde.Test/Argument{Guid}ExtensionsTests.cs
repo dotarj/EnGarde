@@ -48,6 +48,26 @@ namespace EnGarde.Test
                 // Act
                 Argument.Assert(value, "").Not().IsEmpty();
             }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowArgumentExceptionIfNullableValueIsEmpty()
+            {
+                // Arrange
+                var value = (Guid?)Guid.Empty;
+
+                // Act
+                Argument.Assert(value, "").Not().IsEmpty();
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowExceptionIfNullableValueNull()
+            {
+                // Arrange
+                Guid? value = null;
+
+                // Act
+                Argument.Assert(value, "").Not().IsEmpty();
+            }
         }
     }
 }

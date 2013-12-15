@@ -18,7 +18,10 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<T?> HasValue<T>(this Argument<T?> argument, string message = null) where T : struct
         {
-            Argument.Assert(argument, ParameterNames.Argument).Not().IsNull();
+            if (argument == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Argument);
+            }
 
             Exception exception;
 
