@@ -260,7 +260,7 @@ namespace EnGarde
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater or equal than the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater or equal than the given value (if not negated).</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T?> IsGreaterThanOrEqualTo<T>(this Argument<T?> argument, T otherValue, string message = null) where T : struct, IComparable<T>
         {
             if (argument == null)
@@ -362,7 +362,7 @@ namespace EnGarde
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is greater or equal than the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not greater or equal than the given value (if not negated).</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T?> IsGreaterThanOrEqualTo<T>(this Argument<T?> argument, T otherValue, IComparer<T> comparer, string message = null) where T : struct
         {
             if (argument == null)
@@ -465,7 +465,7 @@ namespace EnGarde
         /// <exception cref="InvalidOperationException"><paramref name="argument"/> value is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="argument"/> value is equal to given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not equal to given value (if not negated).</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T?> IsEqualTo<T>(this Argument<T?> argument, T otherValue, string message = null) where T : struct, IEquatable<T>
         {
             if (argument == null)

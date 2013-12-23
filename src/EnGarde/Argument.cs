@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace EnGarde
 {
@@ -7,6 +11,7 @@ namespace EnGarde
     /// </summary>
     public static class Argument
     {
+        private static ConcurrentDictionary<MemberInfo, Delegate> selectors = new ConcurrentDictionary<MemberInfo, Delegate>();
         /// <summary>
         /// Creates an <see cref="Argument{T}"/> for validating an argument value.
         /// </summary>
@@ -17,6 +22,34 @@ namespace EnGarde
         [DebuggerStepThrough]
         public static Argument<T> Assert<T>(T value, string parameterName)
         {
+            return new Argument<T>(value, parameterName);
+        }
+
+        /// <summary>
+        /// Creates an <see cref="Argument{T}"/> for validating an argument value.
+        /// </summary>
+        /// <typeparam name="T">The argument type.</typeparam>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns>A wrapper object containing the actual argument value.</returns>
+        public static Argument<T> Assert<T>(Expression<Func<T>> parameter)
+        {
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(ParameterNames.Parameter);
+            }
+
+            var memberExpression = parameter.Body as MemberExpression;
+
+            if (memberExpression == null || memberExpression.Expression as ConstantExpression == null)
+            {
+                throw new ArgumentException(Messages.MustSelectParameter, ParameterNames.Parameter);
+            }
+
+            var selector = (Func<T>)selectors.GetOrAdd(memberExpression.Member, memberInfo => parameter.Compile());
+
+            var parameterName = memberExpression.Member.Name;
+            var value = selector();
+
             return new Argument<T>(value, parameterName);
         }
     }

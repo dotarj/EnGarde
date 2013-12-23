@@ -5,5 +5,6 @@
         internal const string Argument = "argument";
         internal const string Comparer = "comparer";
         internal const string ParameterName = "parameterName";
+        internal const string Parameter = "parameter";
     }
 }

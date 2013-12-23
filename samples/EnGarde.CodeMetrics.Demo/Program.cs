@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Linq;
 
 namespace EnGarde.CodeMetrics.Demo
 {
@@ -15,6 +16,11 @@ namespace EnGarde.CodeMetrics.Demo
             ClassicArgumentValidationCombined(1);
             ClassicArgumentValidation(1);
             ContractValidation(1);
+
+            Console.WriteLine(Benchmark.Run(() => EnGardeChainedNegatingArgumentValidation(1), 100000));
+            Console.WriteLine(Benchmark.Run(() => EnGardeChainedNegatingArgumentValidation2(1), 100000));
+
+            Console.ReadLine();
         }
 
         private static int NoArgumentValidation(int i)
@@ -25,6 +31,15 @@ namespace EnGarde.CodeMetrics.Demo
         private static int EnGardeChainedNegatingArgumentValidation(int i)
         {
             Argument.Assert(i, "i")
+                .Not().IsLessThan(0)
+                .Not().IsGreaterThan(2);
+
+            return i;
+        }
+
+        private static int EnGardeChainedNegatingArgumentValidation2(int i)
+        {
+            Argument.Assert(() => i)
                 .Not().IsLessThan(0)
                 .Not().IsGreaterThan(2);
 

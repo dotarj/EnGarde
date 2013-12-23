@@ -53,7 +53,7 @@ namespace EnGarde
         /// <exception cref="InvalidOperationException"><typeparamref name="T"/> is not an enum type.</exception>
         /// <exception cref="InvalidEnumArgumentException"><paramref name="argument"/> value is not a defined enum value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is a defined enum value (if not negated).</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T?> IsDefined<T>(this Argument<T?> argument, string message = null) where T : struct, IConvertible
         {
             if (!typeof(T).IsEnum)

@@ -76,7 +76,7 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is the default value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not the default value (if not negated).</exception>
-        //[DebuggerStepThrough]
+        [DebuggerStepThrough]
         public static Argument<T?> IsDefault<T>(this Argument<T?> argument, string message = null) where T : struct
         {
             if (argument == null)

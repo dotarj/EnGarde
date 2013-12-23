@@ -77,5 +77,14 @@ namespace EnGarde {
                 return ResourceManager.GetString("GenericTypeParameterMustBeEnum", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expression must select a parameter..
+        /// </summary>
+        internal static string MustSelectParameter {
+            get {
+                return ResourceManager.GetString("MustSelectParameter", resourceCulture);
+            }
+        }
     }
 }
