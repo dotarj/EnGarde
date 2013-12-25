@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnGarde.Test", "test\EnGard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnGarde.CodeMetrics.Demo", "samples\EnGarde.CodeMetrics.Demo\EnGarde.CodeMetrics.Demo.csproj", "{BAEC4ABB-72E9-43EE-A0E0-56F65DF8CC98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnGarde.Benchmark", "samples\EnGarde.Benchmark\EnGarde.Benchmark.csproj", "{24D800BC-796C-4958-A597-ED53DE04016A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{BAEC4ABB-72E9-43EE-A0E0-56F65DF8CC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAEC4ABB-72E9-43EE-A0E0-56F65DF8CC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAEC4ABB-72E9-43EE-A0E0-56F65DF8CC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24D800BC-796C-4958-A597-ED53DE04016A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D800BC-796C-4958-A597-ED53DE04016A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D800BC-796C-4958-A597-ED53DE04016A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D800BC-796C-4958-A597-ED53DE04016A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

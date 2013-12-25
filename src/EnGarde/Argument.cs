@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -39,7 +38,7 @@ namespace EnGarde
 
             var memberExpression = parameter.Body as MemberExpression;
 
-            if (memberExpression == null || memberExpression.Expression as ConstantExpression == null)
+            if (memberExpression == null)
             {
                 throw new ArgumentException(Messages.MustSelectParameter, ParameterNames.Parameter);
             }
