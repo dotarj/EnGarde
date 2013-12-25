@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ArgumentTests.cs" />
     <Compile Include="Argument{Enum}ExtensionsTests.cs" />
     <Compile Include="Argument{Guid}ExtensionsTests.cs" />
     <Compile Include="Argument{IComparable}ExtensionsTests.cs" />
