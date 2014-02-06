@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 
 namespace EnGarde
@@ -15,7 +17,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is an empty guid (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not an empty guid (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<Guid> IsEmpty(this Argument<Guid> argument, string message = null)
+        public static IValidatedArgument<Guid> IsEmpty(this IArgument<Guid> argument, string message = null)
         {
             if (argument == null)
             {
@@ -24,14 +26,12 @@ namespace EnGarde
 
             Exception exception;
 
-            if (!ValidateIsEmpty(argument.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
+            if (!ValidateIsEmpty(argument.Value, argument.IsNegated, argument.ParameterName, message, out exception))
             {
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is an empty guid (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not an empty guid (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<Guid?> IsEmpty(this Argument<Guid?> argument, string message = null)
+        public static IValidatedArgument<Guid?> IsEmpty(this IArgument<Guid?> argument, string message = null)
         {
             if (argument == null)
             {
@@ -55,15 +55,13 @@ namespace EnGarde
             {
                 Exception exception;
 
-                if (!ValidateIsEmpty(argument.Value.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
+                if (!ValidateIsEmpty(argument.Value.Value, argument.IsNegated, argument.ParameterName, message, out exception))
                 {
                     throw exception;
                 }
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         private static bool ValidateIsEmpty(Guid value, bool isNegativeAssertion, string parameterName, string message, out Exception exception)

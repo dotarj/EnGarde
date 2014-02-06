@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace EnGarde.Test
@@ -7,7 +9,7 @@ namespace EnGarde.Test
     public class ArgumentTests
     {
         [TestClass]
-        public class TheAssertMethod
+        public class TheThatMethod
         {
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentIsNotDefault()
@@ -18,7 +20,7 @@ namespace EnGarde.Test
 
             private void Test(int i)
             {
-                Argument.Assert(() => i).Not().IsDefault();
+                Ensure.That(() => i).Not.IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]

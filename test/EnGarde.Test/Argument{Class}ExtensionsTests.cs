@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +28,7 @@ namespace EnGarde.Test
                 List<int> value = null;
 
                 // Act
-                Argument.Assert(value, "").Not().IsNull();
+                Ensure.That(value, "").Not.IsNull();
             }
         }
     }

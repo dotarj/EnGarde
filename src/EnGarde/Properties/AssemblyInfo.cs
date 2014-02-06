@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EnGarde")]
-[assembly: AssemblyDescription(@"Fluent argument validation. Example: Argument.Assert(value, ""value"").Not().IsNull().StartsWith(""En"")")]
+[assembly: AssemblyDescription(@"Fluent argument validation. Example: Argument.Assert(value, ""value"").Not.IsNull().StartsWith(""En"")")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Arjen Post")]
 [assembly: AssemblyProduct("EnGarde")]

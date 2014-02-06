@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace EnGarde.Test
@@ -16,7 +18,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "value").IsNull();
+                Ensure.That(value, "value").IsNull();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -26,7 +28,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").IsNull();
+                Ensure.That(value, "").IsNull();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -36,7 +38,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "value").Not().IsNull();
+                Ensure.That(value, "value").Not.IsNull();
             }
 
             [TestMethod]
@@ -46,7 +48,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNull();
+                Ensure.That(value, "").Not.IsNull();
             }
         }
 
@@ -60,7 +62,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -70,7 +72,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -80,7 +82,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -90,7 +92,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -100,7 +102,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
 
             [TestMethod]
@@ -110,7 +112,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
 
             [TestMethod]
@@ -120,7 +122,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
         }
 
@@ -134,7 +136,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").IsWhitespace();
+                Ensure.That(value, "").IsWhitespace();
             }
 
             [TestMethod]
@@ -144,7 +146,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").IsWhitespace();
+                Ensure.That(value, "").IsWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -154,7 +156,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").IsWhitespace();
+                Ensure.That(value, "").IsWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -164,7 +166,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").IsWhitespace();
+                Ensure.That(value, "").IsWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -174,7 +176,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").Not().IsWhitespace();
+                Ensure.That(value, "").Not.IsWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -184,7 +186,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").Not().IsWhitespace();
+                Ensure.That(value, "").Not.IsWhitespace();
             }
 
             [TestMethod]
@@ -194,7 +196,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").Not().IsWhitespace();
+                Ensure.That(value, "").Not.IsWhitespace();
             }
         }
 
@@ -208,7 +210,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrEmpty();
+                Ensure.That(value, "").IsNullOrEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -218,7 +220,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrEmpty();
+                Ensure.That(value, "").IsNullOrEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -228,7 +230,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrEmpty();
+                Ensure.That(value, "").IsNullOrEmpty();
             }
 
             [TestMethod]
@@ -238,7 +240,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").IsNullOrEmpty();
+                Ensure.That(value, "").IsNullOrEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -248,7 +250,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrEmpty();
+                Ensure.That(value, "").Not.IsNullOrEmpty();
             }
 
             [TestMethod]
@@ -258,7 +260,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrEmpty();
+                Ensure.That(value, "").Not.IsNullOrEmpty();
             }
 
             [TestMethod]
@@ -268,7 +270,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrEmpty();
+                Ensure.That(value, "").Not.IsNullOrEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -278,7 +280,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrEmpty();
+                Ensure.That(value, "").Not.IsNullOrEmpty();
             }
         }
 
@@ -292,7 +294,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrWhitespace();
+                Ensure.That(value, "").IsNullOrWhitespace();
             }
 
             [TestMethod]
@@ -302,7 +304,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrWhitespace();
+                Ensure.That(value, "").IsNullOrWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -312,7 +314,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").IsNullOrWhitespace();
+                Ensure.That(value, "").IsNullOrWhitespace();
             }
 
             [TestMethod]
@@ -322,7 +324,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").IsNullOrWhitespace();
+                Ensure.That(value, "").IsNullOrWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -332,7 +334,7 @@ namespace EnGarde.Test
                 var value = "";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrWhitespace();
+                Ensure.That(value, "").Not.IsNullOrWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -342,7 +344,7 @@ namespace EnGarde.Test
                 var value = " ";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrWhitespace();
+                Ensure.That(value, "").Not.IsNullOrWhitespace();
             }
 
             [TestMethod]
@@ -352,7 +354,7 @@ namespace EnGarde.Test
                 var value = "a";
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrWhitespace();
+                Ensure.That(value, "").Not.IsNullOrWhitespace();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -362,7 +364,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").Not().IsNullOrWhitespace();
+                Ensure.That(value, "").Not.IsNullOrWhitespace();
             }
         }
 
@@ -376,7 +378,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").StartsWith("En");
+                Ensure.That(value, "").StartsWith("En");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -386,7 +388,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").StartsWith("A");
+                Ensure.That(value, "").StartsWith("A");
             }
 
             [TestMethod]
@@ -396,7 +398,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").StartsWith("en", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").StartsWith("en", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -406,7 +408,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").StartsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").StartsWith("a", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -416,7 +418,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().StartsWith("En");
+                Ensure.That(value, "").Not.StartsWith("En");
             }
 
             [TestMethod]
@@ -426,7 +428,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().StartsWith("A");
+                Ensure.That(value, "").Not.StartsWith("A");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -436,7 +438,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().StartsWith("en", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.StartsWith("en", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod]
@@ -446,7 +448,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().StartsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.StartsWith("a", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -456,7 +458,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").StartsWith("a");
+                Ensure.That(value, "").StartsWith("a");
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -466,7 +468,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").StartsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").StartsWith("a", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -480,7 +482,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").EndsWith("Garde");
+                Ensure.That(value, "").EndsWith("Garde");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -490,7 +492,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").EndsWith("A");
+                Ensure.That(value, "").EndsWith("A");
             }
 
             [TestMethod]
@@ -500,7 +502,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").EndsWith("garde", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").EndsWith("garde", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -510,7 +512,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").EndsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").EndsWith("a", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -520,7 +522,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().EndsWith("Garde");
+                Ensure.That(value, "").Not.EndsWith("Garde");
             }
 
             [TestMethod]
@@ -530,7 +532,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().EndsWith("A");
+                Ensure.That(value, "").Not.EndsWith("A");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -540,7 +542,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().EndsWith("garde", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.EndsWith("garde", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod]
@@ -550,7 +552,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().EndsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.EndsWith("a", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -560,7 +562,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").EndsWith("a");
+                Ensure.That(value, "").EndsWith("a");
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -570,7 +572,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").EndsWith("a", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").EndsWith("a", StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -584,7 +586,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Contains("Gar");
+                Ensure.That(value, "").Contains("Gar");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -594,7 +596,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Contains("Z");
+                Ensure.That(value, "").Contains("Z");
             }
 
             [TestMethod]
@@ -604,7 +606,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Contains("gar", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Contains("gar", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -614,7 +616,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Contains("z", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Contains("z", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -624,7 +626,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().Contains("Gar");
+                Ensure.That(value, "").Not.Contains("Gar");
             }
 
             [TestMethod]
@@ -634,7 +636,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().Contains("Z");
+                Ensure.That(value, "").Not.Contains("Z");
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -644,7 +646,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().Contains("gar", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.Contains("gar", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod]
@@ -654,7 +656,7 @@ namespace EnGarde.Test
                 var value = "EnGarde";
 
                 // Act
-                Argument.Assert(value, "").Not().Contains("z", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Not.Contains("z", StringComparison.OrdinalIgnoreCase);
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -664,7 +666,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").Contains("z");
+                Ensure.That(value, "").Contains("z");
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -674,7 +676,7 @@ namespace EnGarde.Test
                 string value = null;
 
                 // Act
-                Argument.Assert(value, "").Contains("z", StringComparison.OrdinalIgnoreCase);
+                Ensure.That(value, "").Contains("z", StringComparison.OrdinalIgnoreCase);
             }
         }
     }

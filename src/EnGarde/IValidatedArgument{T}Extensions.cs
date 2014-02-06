@@ -7,32 +7,36 @@ using System.Linq.Expressions;
 namespace EnGarde
 {
     /// <summary>
-    /// Contains a static method for validating an argument value.
+    /// Provides a set of static methods for argument validation.
     /// </summary>
-    public static class Ensure
+    public static class IValidatedArgumentExtensions
     {
         /// <summary>
         /// Creates an <see cref="Argument{T}"/> for validating an argument value.
         /// </summary>
+        /// <typeparam name="TPrevious">The previous argument type.</typeparam>
         /// <typeparam name="T">The argument type.</typeparam>
+        /// <param name="argument">A wrapper object containing the previous argument value.</param>
         /// <param name="value">The argument value.</param>
         /// <param name="parameterName">The name of the parameter.</param>
         /// <returns>A wrapper object containing the actual argument value.</returns>
         [DebuggerStepThrough]
-        public static IArgument<T> That<T>(T value, string parameterName)
+        public static IArgument<TPrevious> That<TPrevious, T>(this IValidatedArgument<T> argument, TPrevious value, string parameterName)
         {
-            return new Argument<T>(value, parameterName);
+            return new Argument<TPrevious>(value, parameterName);
         }
 
         /// <summary>
         /// Creates an <see cref="Argument{T}"/> for validating an argument value.
         /// </summary>
+        /// <typeparam name="TPrevious">The previous argument type.</typeparam>
         /// <typeparam name="T">The argument type.</typeparam>
+        /// <param name="argument">A wrapper object containing the previous argument value.</param>
         /// <param name="parameter">The parameter.</param>
         /// <returns>A wrapper object containing the actual argument value.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="parameter"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="parameter"/> does not select a parameter.</exception>
-        public static IArgument<T> That<T>(Expression<Func<T>> parameter)
+        public static IArgument<TPrevious> That<TPrevious, T>(this IValidatedArgument<T> argument, Expression<Func<TPrevious>> parameter)
         {
             if (parameter == null)
             {
@@ -58,9 +62,9 @@ namespace EnGarde
             var type = constantExpression.Value.GetType();
             var field = type.GetField(parameterName);
 
-            var value = (T)field.GetValue(constantExpression.Value);
+            var value = (TPrevious)field.GetValue(constantExpression.Value);
 
-            return new Argument<T>(value, parameterName);
+            return new Argument<TPrevious>(value, parameterName);
         }
     }
 }

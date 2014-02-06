@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 
 namespace EnGarde
@@ -16,7 +18,7 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> value is null (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not null (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<T?> HasValue<T>(this Argument<T?> argument, string message = null) where T : struct
+        public static IValidatedArgument<T?> HasValue<T>(this IArgument<T?> argument, string message = null) where T : struct
         {
             if (argument == null)
             {
@@ -30,16 +32,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateHasValue<T>(Argument<T?> argument, string message, out Exception exception) where T : struct
+        private static bool ValidateHasValue<T>(IArgument<T?> argument, string message, out Exception exception) where T : struct
         {
             if (argument.Value.HasValue)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -48,7 +48,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentNullException(argument.ParameterName, message);
 

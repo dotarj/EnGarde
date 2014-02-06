@@ -1,31 +1,12 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 
 namespace EnGarde
 {
     public static partial class ArgumentExtensions
     {
-        /// <summary>
-        /// Inverts the negation of the next assert.
-        /// </summary>
-        /// <typeparam name="T">The type of the argument to validate.</typeparam>
-        /// <param name="argument">A wrapper object containing the actual argument value.</param>
-        /// <param name="message">The message that describes the error, if the validation of the argument value failed.</param>
-        /// <returns>The original wrapper object containing the actual argument value.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="argument"/> is null.</exception>
-        [DebuggerStepThrough]
-        public static Argument<T> Not<T>(this Argument<T> argument)
-        {
-            if (argument == null)
-            {
-                throw new ArgumentNullException(ParameterNames.Argument);
-            }
-
-            argument.IsNegativeAssertion = !argument.IsNegativeAssertion;
-
-            return argument;
-        }
-
         /// <summary>
         /// Determines whether the argument value does not equal the default value for the argument value type.
         /// </summary>
@@ -37,7 +18,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is the default value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not the default value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<T> IsDefault<T>(this Argument<T> argument, string message = null)
+        public static IValidatedArgument<T> IsDefault<T>(this IArgument<T> argument, string message = null)
         {
             if (argument == null)
             {
@@ -55,15 +36,13 @@ namespace EnGarde
             }
             else
             {
-                if (!ValidateIsDefault(argument.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
+                if (!ValidateIsDefault(argument.Value, argument.IsNegated, argument.ParameterName, message, out exception))
                 {
                     throw exception;
                 }
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         /// <summary>
@@ -77,7 +56,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is the default value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not the default value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<T?> IsDefault<T>(this Argument<T?> argument, string message = null) where T : struct
+        public static IValidatedArgument<T?> IsDefault<T>(this IArgument<T?> argument, string message = null) where T : struct
         {
             if (argument == null)
             {
@@ -88,15 +67,13 @@ namespace EnGarde
 
             if (argument.Value.HasValue)
             {
-                if (!ValidateIsDefault(argument.Value.Value, argument.IsNegativeAssertion, argument.ParameterName, message, out exception))
+                if (!ValidateIsDefault(argument.Value.Value, argument.IsNegated, argument.ParameterName, message, out exception))
                 {
                     throw exception;
                 }
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         private static bool ValidateIsDefault<T>(T value, bool isNegativeAssertion, string parameterName, string message, out Exception exception)

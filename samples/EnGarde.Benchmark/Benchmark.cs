@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 
 namespace EnGarde.Benchmark

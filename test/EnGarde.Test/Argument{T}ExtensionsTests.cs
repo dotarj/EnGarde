@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
@@ -7,17 +9,6 @@ namespace EnGarde.Test
     [TestClass]
     public class ArgumentExtensionsTests
     {
-        [TestClass]
-        public class TheNotMethod
-        {
-            [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-            public void ShouldThrowExceptionIfArgumentIsNull()
-            {
-                // Act
-                ArgumentExtensions.Not<int>(null);
-            }
-        }
-
         [TestClass]
         public class TheIsDefaultMethod
         {
@@ -28,7 +19,7 @@ namespace EnGarde.Test
                 List<int> value = null;
 
                 // Act
-                Argument.Assert(value, "value").IsDefault();
+                Ensure.That(value, "value").IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -38,7 +29,7 @@ namespace EnGarde.Test
                 var value = new List<int>();
 
                 // Act
-                Argument.Assert(value, "value").IsDefault();
+                Ensure.That(value, "value").IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -48,7 +39,7 @@ namespace EnGarde.Test
                 List<int> value = null;
 
                 // Act
-                Argument.Assert(value, "value").Not().IsDefault();
+                Ensure.That(value, "value").Not.IsDefault();
             }
 
             [TestMethod]
@@ -58,7 +49,7 @@ namespace EnGarde.Test
                 var value = new List<int>();
 
                 // Act
-                Argument.Assert(value, "value").Not().IsDefault();
+                Ensure.That(value, "value").Not.IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -68,7 +59,7 @@ namespace EnGarde.Test
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "value").IsDefault();
+                Ensure.That(value, "value").IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -78,7 +69,7 @@ namespace EnGarde.Test
                 var value = 0;
 
                 // Act
-                Argument.Assert(value, "value").Not().IsDefault();
+                Ensure.That(value, "value").Not.IsDefault();
             }
 
             [TestMethod]
@@ -88,7 +79,7 @@ namespace EnGarde.Test
                 var value = 0;
 
                 // Act
-                Argument.Assert(value, "value").IsDefault();
+                Ensure.That(value, "value").IsDefault();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -98,7 +89,7 @@ namespace EnGarde.Test
                 int? value = 0;
 
                 // Act
-                Argument.Assert(value, "value").Not().IsDefault();
+                Ensure.That(value, "value").Not.IsDefault();
             }
 
             [TestMethod]
@@ -108,7 +99,7 @@ namespace EnGarde.Test
                 int? value = null;
 
                 // Act
-                Argument.Assert(value, "value").Not().IsDefault();
+                Ensure.That(value, "value").Not.IsDefault();
             }
         }
     }

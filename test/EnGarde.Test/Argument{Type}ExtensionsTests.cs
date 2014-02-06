@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,21 +18,21 @@ namespace EnGarde.Test
             public void ShouldNotThrowExceptionIfArgumentTypeIsAssignableFromOtherType()
             {
                 // Act
-                Argument.Assert(typeof(Exception), "").IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(typeof(Exception), "").IsAssignableFrom(typeof(ArgumentException));
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
             public void ShouldThrowExceptionIfArgumentTypeIsNotAssignableFromOtherType()
             {
                 // Act
-                Argument.Assert(typeof(Exception), "").Not().IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(typeof(Exception), "").Not.IsAssignableFrom(typeof(ArgumentException));
             }
 
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsNotAssignableFromOtherType()
             {
                 // Act
-                Argument.Assert(typeof(InvalidOperationException), "").Not().IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(typeof(InvalidOperationException), "").Not.IsAssignableFrom(typeof(ArgumentException));
             }
         }
 
@@ -41,21 +43,21 @@ namespace EnGarde.Test
             public void ShouldNotThrowExceptionIfArgumentTypeIsSubclassOfOtherType()
             {
                 // Act
-                Argument.Assert(typeof(ArgumentException), "").IsSubclassOf(typeof(Exception));
+                Ensure.That(typeof(ArgumentException), "").IsSubclassOf(typeof(Exception));
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
             public void ShouldThrowExceptionIfArgumentTypeIsNotSubclassOfOtherType()
             {
                 // Act
-                Argument.Assert(typeof(ArgumentException), "").Not().IsSubclassOf(typeof(Exception));
+                Ensure.That(typeof(ArgumentException), "").Not.IsSubclassOf(typeof(Exception));
             }
 
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsNotSubclassOfOtherType()
             {
                 // Act
-                Argument.Assert(typeof(InvalidOperationException), "").Not().IsSubclassOf(typeof(ArgumentException));
+                Ensure.That(typeof(InvalidOperationException), "").Not.IsSubclassOf(typeof(ArgumentException));
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -8,12 +10,12 @@ namespace EnGarde.Benchmark
     public static class Argument
     {
         [DebuggerStepThrough]
-        public static Argument<T> Assert<T>(T value, string parameterName)
+        public static  Argument<T> Assert<T>(T value, string parameterName)
         {
             return new Argument<T>(value, parameterName);
         }
 
-        public static Argument<T> AssertUsingExpressionWithoutCompilation<T>(Expression<Func<T>> parameter)
+        public static  Argument<T> AssertUsingExpressionWithoutCompilation<T>(Expression<Func<T>> parameter)
         {
             if (parameter == null)
             {
@@ -44,7 +46,7 @@ namespace EnGarde.Benchmark
             return new Argument<T>(value, parameterName);
         }
 
-        public static Argument<T> AssertUsingFieldInfoReader<T>(Func<T> parameter)
+        public static  Argument<T> AssertUsingFieldInfoReader<T>(Func<T> parameter)
         {
             var fieldInfoReader = new FieldInfoReader<T>(parameter);
             var fieldInfo = fieldInfoReader.GetFieldToken();
@@ -55,7 +57,7 @@ namespace EnGarde.Benchmark
             return new Argument<T>(value, parameterName);
         }
 
-        public static Argument<T> AssertUsingExpressionCompilation<T>(Expression<Func<T>> parameter)
+        public static  Argument<T> AssertUsingExpressionCompilation<T>(Expression<Func<T>> parameter)
         {
             if (parameter == null)
             {

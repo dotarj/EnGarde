@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.ComponentModel;
 using System.Reflection;
@@ -18,7 +20,7 @@ namespace EnGarde.Test
                 var value = (StringSplitOptions)int.MaxValue;
 
                 // Act
-                Argument.Assert(value, "").Not().IsDefined();
+                Ensure.That(value, "").Not.IsDefined();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -28,7 +30,7 @@ namespace EnGarde.Test
                 var value = StringSplitOptions.RemoveEmptyEntries;
 
                 // Act
-                Argument.Assert(value, "").Not().IsDefined();
+                Ensure.That(value, "").Not.IsDefined();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -38,7 +40,7 @@ namespace EnGarde.Test
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").Not().IsDefined();
+                Ensure.That(value, "").Not.IsDefined();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidEnumArgumentException))]
@@ -48,7 +50,7 @@ namespace EnGarde.Test
                 var value = (StringSplitOptions)int.MaxValue;
 
                 // Act
-                Argument.Assert(value, "").IsDefined();
+                Ensure.That(value, "").IsDefined();
             }
 
             [TestMethod]
@@ -58,7 +60,7 @@ namespace EnGarde.Test
                 var value = StringSplitOptions.RemoveEmptyEntries;
 
                 // Act
-                Argument.Assert(value, "").IsDefined();
+                Ensure.That(value, "").IsDefined();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidEnumArgumentException))]
@@ -68,7 +70,7 @@ namespace EnGarde.Test
                 var value = (StringSplitOptions?)int.MaxValue;
 
                 // Act
-                Argument.Assert(value, "").IsDefined();
+                Ensure.That(value, "").IsDefined();
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -78,7 +80,7 @@ namespace EnGarde.Test
                 int? value = 1;
 
                 // Act
-                Argument.Assert(value, "").Not().IsDefined();
+                Ensure.That(value, "").Not.IsDefined();
             }
 
             [TestMethod]
@@ -88,7 +90,7 @@ namespace EnGarde.Test
                 StringSplitOptions? value = null;
 
                 // Act
-                Argument.Assert(value, "").IsDefined();
+                Ensure.That(value, "").IsDefined();
             }
         }
 
@@ -102,7 +104,7 @@ namespace EnGarde.Test
                 var value = MethodAttributes.Assembly;
 
                 // Act
-                Argument.Assert(value, "").Not().HasFlag(MethodAttributes.Abstract);
+                Ensure.That(value, "").Not.HasFlag(MethodAttributes.Abstract);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -112,7 +114,7 @@ namespace EnGarde.Test
                 var value = MethodAttributes.Assembly;
 
                 // Act
-                Argument.Assert(value, "").Not().HasFlag(MethodAttributes.Assembly);
+                Ensure.That(value, "").Not.HasFlag(MethodAttributes.Assembly);
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -122,7 +124,7 @@ namespace EnGarde.Test
                 var value = 1;
 
                 // Act
-                Argument.Assert(value, "").Not().HasFlag(2);
+                Ensure.That(value, "").Not.HasFlag(2);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -132,7 +134,7 @@ namespace EnGarde.Test
                 var value = MethodAttributes.Abstract;
 
                 // Act
-                Argument.Assert(value, "").HasFlag(MethodAttributes.Assembly);
+                Ensure.That(value, "").HasFlag(MethodAttributes.Assembly);
             }
 
             [TestMethod]
@@ -142,7 +144,7 @@ namespace EnGarde.Test
                 var value = MethodAttributes.Abstract;
 
                 // Act
-                Argument.Assert(value, "").HasFlag(MethodAttributes.Abstract);
+                Ensure.That(value, "").HasFlag(MethodAttributes.Abstract);
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -152,7 +154,7 @@ namespace EnGarde.Test
                 MethodAttributes? value = MethodAttributes.Abstract;
 
                 // Act
-                Argument.Assert(value, "").HasFlag(MethodAttributes.Assembly);
+                Ensure.That(value, "").HasFlag(MethodAttributes.Assembly);
             }
 
             [TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -162,7 +164,7 @@ namespace EnGarde.Test
                 int? value = 1;
 
                 // Act
-                Argument.Assert(value, "").Not().HasFlag(2);
+                Ensure.That(value, "").Not.HasFlag(2);
             }
 
             [TestMethod]
@@ -172,7 +174,7 @@ namespace EnGarde.Test
                 MethodAttributes? value = null;
 
                 // Act
-                Argument.Assert(value, "").HasFlag(MethodAttributes.Abstract);
+                Ensure.That(value, "").HasFlag(MethodAttributes.Abstract);
             }
         }
     }

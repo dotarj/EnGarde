@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
@@ -8,86 +10,63 @@ namespace EnGarde.CodeMetrics.Demo
     {
         static void Main(string[] args)
         {
-            NoArgumentValidation(1);
-            EnGardeChainedNegatingArgumentValidation(1);
-            EnGardeNonChainedNegatingArgumentValidation(1);
-            EnGardeChainedNonNegatingArgumentValidation(1);
-            EnGardeNonChainedNonNegatingArgumentValidation(1);
-            ClassicArgumentValidationCombined(1);
-            ClassicArgumentValidation(1);
-            ContractValidation(1);
+            NoArgumentValidation(1, "a");
+            EnGardeArgumentValidation(1, "a");
+            EnGardeArgumentValidationExpression(1, "a");
+            ClassicArgumentValidation(1, "a");
+            ContractArgumentValidation(1, "a");
 
             Console.ReadLine();
         }
 
-        private static int NoArgumentValidation(int i)
+        private static int NoArgumentValidation(int i, string s)
         {
             return i;
         }
 
-        private static int EnGardeChainedNegatingArgumentValidation(int i)
-        {
-            Argument.Assert(i, "i")
-                .Not().IsLessThan(0)
-                .Not().IsGreaterThan(2);
+private static int EnGardeArgumentValidation(int i, string s)
+{
+    Ensure
+        .That(i, "i").Not.IsLessThan(0).And.Not.IsGreaterThan(2)
+        .That(s, "s").Not.IsNullOrEmpty();
 
-            return i;
-        }
+    return i;
+}
 
-        private static int EnGardeNonChainedNegatingArgumentValidation(int i)
-        {
-            Argument.Assert(i, "i").Not().IsLessThan(0);
-            Argument.Assert(i, "i").Not().IsGreaterThan(2);
+private static int EnGardeArgumentValidationExpression(int i, string s)
+{
+    Ensure
+        .That(() => i).Not.IsLessThan(0).And.Not.IsGreaterThan(2)
+        .That(() => s).Not.IsNullOrEmpty();
 
-            return i;
-        }
+    return i;
+}
 
-        private static int EnGardeChainedNonNegatingArgumentValidation(int i)
-        {
-            Argument.Assert(i, "i")
-                .IsGreaterThan(0)
-                .IsLessThan(2);
-
-            return i;
-        }
-
-        private static int EnGardeNonChainedNonNegatingArgumentValidation(int i)
-        {
-            Argument.Assert(i, "i").IsGreaterThan(0);
-            Argument.Assert(i, "i").IsLessThan(2);
-
-            return i;
-        }
-
-        private static int ClassicArgumentValidation(int i)
-        {
-            if (i > 2)
-            {
-                throw new ArgumentOutOfRangeException("i", i, "");
-            }
-
-            if (i < 0)
-            {
-                throw new ArgumentOutOfRangeException("i", i, "");
-            }
-
-            return i;
-        }
-
-        private static int ClassicArgumentValidationCombined(int i)
+        private static int ClassicArgumentValidation(int i, string s)
         {
             if (i < 0 || i > 2)
             {
                 throw new ArgumentOutOfRangeException("i", i, "");
             }
 
+            if (s == null)
+            {
+                throw new ArgumentNullException("s");
+            }
+
+            if (s == string.Empty)
+            {
+                throw new ArgumentException("s");
+            }
+
             return i;
         }
 
-        private static int ContractValidation(int i)
+        private static int ContractArgumentValidation(int i, string s)
         {
-            Contract.Requires<ArgumentOutOfRangeException>(i <= 2);
-            Contract.Requires<ArgumentOutOfRangeException>(i >= 0);
+            Contract.Requires<ArgumentOutOfRangeException>(i <= 2 || i >= 0);
+            Contract.Requires<ArgumentNullException>(s != null);
+            Contract.Requires<ArgumentException>(s != string.Empty);
 
             return i;
         }

@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace EnGarde.Test
@@ -16,7 +18,7 @@ namespace EnGarde.Test
                 int? value = 0;
 
                 // Act
-                Argument.Assert(value, "value").HasValue();
+                Ensure.That(value, "value").HasValue();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentNullException))]
@@ -26,7 +28,7 @@ namespace EnGarde.Test
                 int? value = null;
 
                 // Act
-                Argument.Assert(value, "value").HasValue();
+                Ensure.That(value, "value").HasValue();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -36,7 +38,7 @@ namespace EnGarde.Test
                 int? value = 0;
 
                 // Act
-                Argument.Assert(value, "value").Not().HasValue();
+                Ensure.That(value, "value").Not.HasValue();
             }
 
             [TestMethod]
@@ -46,7 +48,7 @@ namespace EnGarde.Test
                 int? value = null;
 
                 // Act
-                Argument.Assert(value, "value").Not().HasValue();
+                Ensure.That(value, "value").Not.HasValue();
             }
         }
     }

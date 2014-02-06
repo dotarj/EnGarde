@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -16,7 +18,7 @@ namespace EnGarde
         /// <exception cref="ArgumentNullException"><paramref name="argument"/> value is null (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is null (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> IsNull(this Argument<string> argument, string message = null)
+        public static IValidatedArgument<string> IsNull(this IArgument<string> argument, string message = null)
         {
             if (argument == null)
             {
@@ -30,16 +32,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-            
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateIsNull(Argument<string> argument, string message, out Exception exception)
+        private static bool ValidateIsNull(IArgument<string> argument, string message, out Exception exception)
         {
             if (argument.Value == null)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentNullException(argument.ParameterName, message);
 
@@ -48,7 +48,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -72,7 +72,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is empty (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not empty (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> IsEmpty(this Argument<string> argument, string message = null)
+        public static IValidatedArgument<string> IsEmpty(this IArgument<string> argument, string message = null)
         {
             if (argument == null)
             {
@@ -91,16 +91,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateIsEmpty(Argument<string> argument, string message, out Exception exception)
+        private static bool ValidateIsEmpty(IArgument<string> argument, string message, out Exception exception)
         {
             if (argument.Value.Length == 0)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -109,7 +107,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -133,7 +131,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is whitespace (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not whitespace (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> IsWhitespace(this Argument<string> argument, string message = null)
+        public static IValidatedArgument<string> IsWhitespace(this IArgument<string> argument, string message = null)
         {
             if (argument == null)
             {
@@ -152,16 +150,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateIsWhitespace(Argument<string> argument, string message, out Exception exception)
+        private static bool ValidateIsWhitespace(IArgument<string> argument, string message, out Exception exception)
         {
             if (!ContainsNonWhitespaceCharacters(argument.Value))
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -170,7 +166,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -200,7 +196,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not null (if not negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not empty (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> IsNullOrEmpty(this Argument<string> argument, string message = null)
+        public static IValidatedArgument<string> IsNullOrEmpty(this IArgument<string> argument, string message = null)
         {
             if (argument == null)
             {
@@ -214,16 +210,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateIsNullOrEmpty(Argument<string> argument, string message, out Exception exception)
+        private static bool ValidateIsNullOrEmpty(IArgument<string> argument, string message, out Exception exception)
         {
             if (argument.Value == null)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentNullException(argument.ParameterName, message);
 
@@ -232,7 +226,7 @@ namespace EnGarde
             }
             else if (argument.Value.Length == 0)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -241,7 +235,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -266,7 +260,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not null (if not negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> value is not whitespace (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> IsNullOrWhitespace(this Argument<string> argument, string message = null)
+        public static IValidatedArgument<string> IsNullOrWhitespace(this IArgument<string> argument, string message = null)
         {
             if (argument == null)
             {
@@ -280,16 +274,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateIsNullOrWhitespace(Argument<string> argument, string message, out Exception exception)
+        private static bool ValidateIsNullOrWhitespace(IArgument<string> argument, string message, out Exception exception)
         {
             if (argument.Value == null)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentNullException(argument.ParameterName, message);
 
@@ -298,7 +290,7 @@ namespace EnGarde
             }
             else if (!ContainsNonWhitespaceCharacters(argument.Value))
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -307,7 +299,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -332,7 +324,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does start with the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not start with the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> StartsWith(this Argument<string> argument, string value, string message = null)
+        public static IValidatedArgument<string> StartsWith(this IArgument<string> argument, string value, string message = null)
         {
             if (argument == null)
             {
@@ -351,16 +343,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateStartsWith(Argument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
+        private static bool ValidateStartsWith(IArgument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
         {
             if (argument.Value.StartsWith(value, comparisonType))
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -369,7 +359,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -395,7 +385,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does start with the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not start with the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> StartsWith(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
+        public static IValidatedArgument<string> StartsWith(this IArgument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
             if (argument == null)
             {
@@ -414,9 +404,7 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         /// <summary>
@@ -431,7 +419,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does end with the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not end with the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> EndsWith(this Argument<string> argument, string value, string message = null)
+        public static IValidatedArgument<string> EndsWith(this IArgument<string> argument, string value, string message = null)
         {
             if (argument == null)
             {
@@ -450,16 +438,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateEndsWith(Argument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
+        private static bool ValidateEndsWith(IArgument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
         {
             if (argument.Value.EndsWith(value, comparisonType))
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -468,7 +454,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -494,7 +480,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does end with the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not end with the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> EndsWith(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
+        public static IValidatedArgument<string> EndsWith(this IArgument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
             if (argument == null)
             {
@@ -513,9 +499,7 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
         /// <summary>
@@ -530,7 +514,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does contain the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not contain the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> Contains(this Argument<string> argument, string value, string message = null)
+        public static IValidatedArgument<string> Contains(this IArgument<string> argument, string value, string message = null)
         {
             if (argument == null)
             {
@@ -549,16 +533,14 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
 
-        private static bool ValidateContainsWith(Argument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
+        private static bool ValidateContainsWith(IArgument<string> argument, string value, StringComparison comparisonType, string message, out Exception exception)
         {
             if (argument.Value.IndexOf(value, comparisonType) >= 0)
             {
-                if (argument.IsNegativeAssertion)
+                if (argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -567,7 +549,7 @@ namespace EnGarde
             }
             else
             {
-                if (!argument.IsNegativeAssertion)
+                if (!argument.IsNegated)
                 {
                     exception = new ArgumentException(message, argument.ParameterName);
 
@@ -593,7 +575,7 @@ namespace EnGarde
         /// <exception cref="ArgumentException"><paramref name="argument"/> does contain the given value (if negated).</exception>
         /// <exception cref="ArgumentException"><paramref name="argument"/> does not contain the given value (if not negated).</exception>
         [DebuggerStepThrough]
-        public static Argument<string> Contains(this Argument<string> argument, string value, StringComparison comparisonType, string message = null)
+        public static IValidatedArgument<string> Contains(this IArgument<string> argument, string value, StringComparison comparisonType, string message = null)
         {
             if (argument == null)
             {
@@ -612,9 +594,7 @@ namespace EnGarde
                 throw exception;
             }
 
-            argument.IsNegativeAssertion = false;
-
-            return argument;
+            return argument.AsValidatedArgument();
         }
     }
 }

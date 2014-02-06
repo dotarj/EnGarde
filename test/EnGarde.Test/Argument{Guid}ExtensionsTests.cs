@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// Copyright (c) Arjen Post. See License.txt in the project root for license information.
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace EnGarde.Test
@@ -16,7 +18,7 @@ namespace EnGarde.Test
                 var value = Guid.Empty;
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -26,7 +28,7 @@ namespace EnGarde.Test
                 var value = Guid.NewGuid();
 
                 // Act
-                Argument.Assert(value, "").IsEmpty();
+                Ensure.That(value, "").IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -36,7 +38,7 @@ namespace EnGarde.Test
                 var value = Guid.Empty;
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
 
             [TestMethod]
@@ -46,7 +48,7 @@ namespace EnGarde.Test
                 var value = Guid.NewGuid();
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
@@ -56,7 +58,7 @@ namespace EnGarde.Test
                 var value = (Guid?)Guid.Empty;
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
 
             [TestMethod]
@@ -66,7 +68,7 @@ namespace EnGarde.Test
                 Guid? value = null;
 
                 // Act
-                Argument.Assert(value, "").Not().IsEmpty();
+                Ensure.That(value, "").Not.IsEmpty();
             }
         }
     }
