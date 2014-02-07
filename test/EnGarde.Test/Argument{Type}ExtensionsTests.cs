@@ -17,22 +17,31 @@ namespace EnGarde.Test
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsAssignableFromOtherType()
             {
+                // Arrange
+                var value = typeof(Exception);
+
                 // Act
-                Ensure.That(typeof(Exception), "").IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(value, "").IsAssignableFrom(typeof(ArgumentException));
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
             public void ShouldThrowExceptionIfArgumentTypeIsNotAssignableFromOtherType()
             {
+                // Arrange
+                var value = typeof(Exception);
+
                 // Act
-                Ensure.That(typeof(Exception), "").Not.IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(value, "").Not.IsAssignableFrom(typeof(ArgumentException));
             }
 
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsNotAssignableFromOtherType()
             {
+                // Arrange
+                var value = typeof(InvalidOperationException);
+
                 // Act
-                Ensure.That(typeof(InvalidOperationException), "").Not.IsAssignableFrom(typeof(ArgumentException));
+                Ensure.That(value, "").Not.IsAssignableFrom(typeof(ArgumentException));
             }
         }
 
@@ -42,22 +51,31 @@ namespace EnGarde.Test
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsSubclassOfOtherType()
             {
+                // Arrange
+                var value = typeof(ArgumentException);
+
                 // Act
-                Ensure.That(typeof(ArgumentException), "").IsSubclassOf(typeof(Exception));
+                Ensure.That(value, "").IsSubclassOf(typeof(Exception));
             }
 
             [TestMethod, ExpectedException(typeof(ArgumentException))]
             public void ShouldThrowExceptionIfArgumentTypeIsNotSubclassOfOtherType()
             {
+                // Arrange
+                var value = typeof(ArgumentException);
+
                 // Act
-                Ensure.That(typeof(ArgumentException), "").Not.IsSubclassOf(typeof(Exception));
+                Ensure.That(value, "").Not.IsSubclassOf(typeof(Exception));
             }
 
             [TestMethod]
             public void ShouldNotThrowExceptionIfArgumentTypeIsNotSubclassOfOtherType()
             {
+                // Arrange
+                var value = typeof(InvalidOperationException);
+
                 // Act
-                Ensure.That(typeof(InvalidOperationException), "").Not.IsSubclassOf(typeof(ArgumentException));
+                Ensure.That(value, "").Not.IsSubclassOf(typeof(ArgumentException));
             }
         }
     }

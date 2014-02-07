@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("EnGarde")]
-[assembly: AssemblyDescription(@"Fluent argument validation. Example: Argument.Assert(value, ""value"").Not.IsNull().StartsWith(""En"")")]
+[assembly: AssemblyDescription(@"EnGarde allows you to validate arguments using a fluent interface, for example: Ensure.That(value, ""value"").Not.IsNull().And.StartsWith(""En"").")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Arjen Post")]
 [assembly: AssemblyProduct("EnGarde")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,7 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.2.0.0")]
-[assembly: AssemblyFileVersion("0.2.0.0")]
-[assembly: AssemblyInformationalVersion("0.2.0-alpha")]
-[assembly: InternalsVisibleTo("EnGarde.Benchmark")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
