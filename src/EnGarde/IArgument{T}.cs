@@ -6,7 +6,7 @@ namespace EnGarde
     /// A wrapper object containing the actual argument value.
     /// </summary>
     /// <typeparam name="T">The argument type.</typeparam>
-    public interface IArgument<T>
+    public interface IArgument<out T>
     {
         /// <summary>
         /// Internal and extension use only. Must be called from a validation method for a correct fluent interface.

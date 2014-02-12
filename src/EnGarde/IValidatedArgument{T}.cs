@@ -6,7 +6,7 @@ namespace EnGarde
     /// A wrapper object containing the actual argument value.
     /// </summary>
     /// <typeparam name="T">The argument type.</typeparam>
-    public interface IValidatedArgument<T>
+    public interface IValidatedArgument<out T>
     {
         /// <summary>
         /// Allows subsequent validations.

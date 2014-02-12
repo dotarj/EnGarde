@@ -10,6 +10,50 @@ namespace EnGarde.Test
     public class ArgumentExtensionsTests
     {
         [TestClass]
+        public class TheSatisfiesMethod
+        {
+            [TestMethod]
+            public void ShouldNotThrowExceptionIfTheConditionIsSatisfied()
+            {
+                // Arrange
+                var value = new List<int>();
+
+                // Act
+                Ensure.That(value, "value").Satisfies(value.Count == 0);
+            }
+
+            [TestMethod]
+            public void ShouldNotThrowExceptionIfTheConditionIsNotSatisfied()
+            {
+                // Arrange
+                var value = new List<int>();
+
+                // Act
+                Ensure.That(value, "value").Not.Satisfies(value.Count == 1);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowExceptionIfTheConditionIsSatisfied()
+            {
+                // Arrange
+                var value = new List<int>();
+
+                // Act
+                Ensure.That(value, "value").Not.Satisfies(value.Count == 0);
+            }
+
+            [TestMethod, ExpectedException(typeof(ArgumentException))]
+            public void ShouldThrowExceptionIfTheConditionIsNotSatisfied()
+            {
+                // Arrange
+                var value = new List<int>();
+
+                // Act
+                Ensure.That(value, "value").Satisfies(value.Count == 1);
+            }
+        }
+
+        [TestClass]
         public class TheIsDefaultMethod
         {
             [TestMethod]
