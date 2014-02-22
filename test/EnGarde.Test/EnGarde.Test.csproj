@@ -59,6 +59,7 @@
     <Compile Include="Argument{Class}ExtensionsTests.cs" />
     <Compile Include="Argument{Type}ExtensionsTests.cs" />
     <Compile Include="Argument{ICollection{T}}ExtensionsTests.cs" />
+    <Compile Include="Argument{IEnumerable{T}}ExtensionsTests.cs" />
     <Compile Include="IValidatedArgument{T}ExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Argument{String}ExtensionsTests.cs" />

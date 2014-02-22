@@ -49,6 +49,7 @@
     <Compile Include="Argument{Class}Extensions.cs" />
     <Compile Include="Argument{Type}Extensions.cs" />
     <Compile Include="Argument{ICollection{T}}Extensions.cs" />
+    <Compile Include="Argument{IEnumerable{T}}Extensions.cs" />
     <Compile Include="IValidatedArgument{T}Extensions.cs" />
     <Compile Include="IValidatedArgument{T}.cs" />
     <Compile Include="IArgument{T}.cs" />
